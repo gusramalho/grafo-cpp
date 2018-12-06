@@ -1,6 +1,8 @@
 #ifndef GRAFO_H
 #define GRAFO_H
 
+#include "MatrizEsparsa.h";
+
 template <class T>
 class Grafo
 {
@@ -11,6 +13,9 @@ class Grafo
     protected:
 
     private:
+        T* vertices;
+        MatrizEsparsa<int> arestas;
+
 };
 
 #endif // GRAFO_H

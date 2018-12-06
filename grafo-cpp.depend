@@ -1,0 +1,52 @@
+# depslib dependency file v1.0
+1544134342 source:c:\users\carlo\onedrive\documentos\github\grafo-cpp\main.cpp
+	<iostream>
+
+1544056851 source:c:\users\carlo\onedrive\documentos\github\grafo-cpp\src\arvoreavl.cpp
+	"ArvoreAVL.h"
+	<iostream>
+	<string.h>
+
+1544057840 c:\users\carlo\onedrive\documentos\github\grafo-cpp\include\arvoreavl.h
+	"No.h"
+	<iostream>
+	"../src/ArvoreAVL.cpp"
+
+1543773118 c:\users\carlo\onedrive\documentos\github\grafo-cpp\include\no.h
+	<iostream>
+	"../src/No.cpp"
+
+1543773118 c:\users\carlo\onedrive\documentos\github\grafo-cpp\src\no.cpp
+	"No.h"
+	<iostream>
+	<string.h>
+	<stdio.h>
+
+1544056851 c:\users\carlo\onedrive\documentos\github\grafo-cpp\src\arvoreavl.cpp
+	"ArvoreAVL.h"
+	<iostream>
+	<string.h>
+
+1544134340 source:c:\users\carlo\onedrive\documentos\github\grafo-cpp\src\grafo.cpp
+	"Grafo.h"
+
+1544134383 c:\users\carlo\onedrive\documentos\github\grafo-cpp\include\grafo.h
+	"MatrizEsparsa.h"
+
+1544132605 c:\users\carlo\onedrive\documentos\github\grafo-cpp\include\matrizesparsa.h
+	"ArvoreAVL.h"
+	<iostream>
+	"../src/MatrizEsparsa.cpp"
+
+1544056703 c:\users\carlo\onedrive\documentos\github\grafo-cpp\src\matrizesparsa.cpp
+	"MatrizEsparsa.h"
+
+1544056703 source:c:\users\carlo\onedrive\documentos\github\grafo-cpp\src\matrizesparsa.cpp
+	"MatrizEsparsa.h"
+
+1543773118 source:c:\users\carlo\onedrive\documentos\github\grafo-cpp\src\no.cpp
+	"No.h"
+	<iostream>
+	<string.h>
+	<stdio.h>
+
