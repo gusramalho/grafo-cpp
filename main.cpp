@@ -10,6 +10,6 @@ int main()
     g->addVertice(50);
 
     g->addAresta(40, 50, 3);
-    cout << "Hello world!" << endl;
+    cout << *g << endl;
     return 0;
 }
