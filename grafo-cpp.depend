@@ -1,6 +1,7 @@
 # depslib dependency file v1.0
-1544134342 source:c:\users\carlo\onedrive\documentos\github\grafo-cpp\main.cpp
+1544136191 source:c:\users\carlo\onedrive\documentos\github\grafo-cpp\main.cpp
 	<iostream>
+	"Grafo.h"
 
 1544056851 source:c:\users\carlo\onedrive\documentos\github\grafo-cpp\src\arvoreavl.cpp
 	"ArvoreAVL.h"
@@ -27,11 +28,12 @@
 	<iostream>
 	<string.h>
 
-1544134340 source:c:\users\carlo\onedrive\documentos\github\grafo-cpp\src\grafo.cpp
+1544136216 source:c:\users\carlo\onedrive\documentos\github\grafo-cpp\src\grafo.cpp
 	"Grafo.h"
 
-1544134383 c:\users\carlo\onedrive\documentos\github\grafo-cpp\include\grafo.h
+1544136011 c:\users\carlo\onedrive\documentos\github\grafo-cpp\include\grafo.h
 	"MatrizEsparsa.h"
+	"../src/Grafo.cpp"
 
 1544132605 c:\users\carlo\onedrive\documentos\github\grafo-cpp\include\matrizesparsa.h
 	"ArvoreAVL.h"
@@ -49,4 +51,7 @@
 	<iostream>
 	<string.h>
 	<stdio.h>
+
+1544136311 c:\users\carlo\onedrive\documentos\github\grafo-cpp\src\grafo.cpp
+	"Grafo.h"
 
