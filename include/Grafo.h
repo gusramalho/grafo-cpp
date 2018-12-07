@@ -16,6 +16,7 @@ class Grafo
 
         friend ostream &operator<<(ostream& out, Grafo<T>& grafo)
         {
+            out << "Indice atual: " << grafo.indiceAtual << endl;
             out << "Vertices: ";
             for (int i=0; i<grafo.indiceAtual; i++)
             {
@@ -31,7 +32,7 @@ class Grafo
                 for (int j=0; j<grafo.indiceAtual+1; j++)
                 {
                     int aresta = grafo.arestas->get(i,j);
-                    if (aresta == 3)
+                    if (aresta != 0)
                     {
                         out << grafo.vertices[i];
                         out << " ----> ";
@@ -40,7 +41,11 @@ class Grafo
                         out << aresta << endl;
                     }
                 }
+            out << endl;
 
+            out << endl;
+
+            out << *grafo.arestas << endl;
             return out;
         }
 
@@ -51,6 +56,10 @@ class Grafo
         int* indices;
         MatrizEsparsa<int>* arestas;
         int indiceAtual;
+        int indiceDe(T vertice);
+        int temAresta(T vertice);
+        void removerVerticeDasArestas(int);
+
 
 };
 #include "../src/Grafo.cpp"

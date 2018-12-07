@@ -15,6 +15,7 @@ class MatrizEsparsa
         int getLinhas();
         int getColunas();
 
+
         friend ostream &operator<<(ostream& out,  MatrizEsparsa<T>& matriz)
         {
             for (int i = 0; i < matriz.lins; i++)
@@ -23,7 +24,6 @@ class MatrizEsparsa
                     out << matriz.get(i, j);
                 out << endl;
             }
-
 
             return out;
         }

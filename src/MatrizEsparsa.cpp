@@ -30,6 +30,9 @@ T MatrizEsparsa<T>::get(int i, int j)
 template<class T>
 void MatrizEsparsa<T>::put(T info, int i, int j)
 {
+     if (!this->linhas->existe(i) && info == valorPadrao)
+            return;
+
      if (!this->linhas->existe(i) && info != valorPadrao)
      {
          ArvoreAVL<T> *coluna = new ArvoreAVL<T>();
