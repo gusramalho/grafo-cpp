@@ -7,7 +7,8 @@ template <class T>
 class Grafo
 {
     public:
-        Grafo<T>();
+
+        Grafo<T>(int);
         void addVertice(T vertice);
         void removeVertice(T vertice);
 
@@ -28,11 +29,12 @@ class Grafo
 
             out << endl;
             out << "Arestas: " << endl;
+
             for (int i=0; i<grafo.indiceAtual+1; i++)
                 for (int j=0; j<grafo.indiceAtual+1; j++)
                 {
                     int aresta = grafo.arestas->get(i,j);
-                    if (aresta != 0)
+                    if (aresta != -1)
                     {
                         out << grafo.vertices[i];
                         out << " ----> ";
@@ -55,6 +57,8 @@ class Grafo
         T* vertices;
         int* indices;
         MatrizEsparsa<int>* arestas;
+        int ehDirecionado;
+
         int indiceAtual;
         int indiceDe(T vertice);
         int temAresta(T vertice);

@@ -3,14 +3,14 @@
 
 #include "Grafo.h"
 
-
 template <class T>
-Grafo<T>::Grafo()
+Grafo<T>::Grafo(int dir)
 {
-    this->vertices = new T[15];
-    this->indices = new int[15];
-    this->arestas = new MatrizEsparsa<int>(0, 15, 15);
+    this->vertices = new T[25];
+    this->indices = new int[25];
+    this->arestas = new MatrizEsparsa<int>(-1, 25, 25);
     this->indiceAtual = 0;
+    this->ehDirecionado = dir;
 }
 
 template <class T>
@@ -59,11 +59,13 @@ void Grafo<T>::addAresta(T vOrigem, T vDestino, int peso)
     int origem = indiceDe(vOrigem);
     int destino = indiceDe(vDestino);
 
-    if (this->arestas->get(origem, destino) != 0)
+    if (this->arestas->get(origem, destino) != -1)
         throw std::invalid_argument("Aresta ja existente");
 
     this->arestas->put(peso, origem, destino);
-    this->arestas->put(peso, destino, origem);
+
+    if (!ehDirecionado)
+        this->arestas->put(peso, destino, origem);
 }
 
 
@@ -73,20 +75,29 @@ void Grafo<T>::removeAresta(T vOrigem, T vDestino)
     int origem = indiceDe(vOrigem);
     int destino = indiceDe(vDestino);
 
-    if (this->arestas->get(origem, destino) == 0)
+    if (this->arestas->get(origem, destino) == -1)
         throw std::invalid_argument("Aresta nao existente");
 
     this->arestas->put(-1, origem, destino);
-    this->arestas->put(-1, destino, origem);
+
+    if (!ehDirecionado)
+        this->arestas->put(-1, destino, origem);
 }
 
 template <class T>
 int Grafo<T>::temAresta(T vertice)
 {
    int iVertc = indiceDe(vertice);
-   for (int i=0; i < this->indiceAtual; i++)
-        if (this->arestas->get(iVertc, i) != 0)
+   for (int j=0; j < this->indiceAtual; j++)
+        if (this->arestas->get(iVertc, j) != -1)
             return 1;
+
+   if (ehDirecionado)
+   {
+       for (int i= 0; i < this->indiceAtual; i++)
+            if (this->arestas->get(i, iVertc) != -1)
+                return 1;
+   }
 
    return 0;
 }
@@ -115,9 +126,6 @@ void Grafo<T>::removerVerticeDasArestas(int indice)
             this->arestas->put(val, i, j);
         }
 }
-
-
-
 
 #endif // GRAFO_CPP
 
