@@ -21,7 +21,7 @@ class ArvoreAVL
         int altura();
         char* toString();
         char* toStringPorNvl();
-        void test();
+
 
         friend ostream &operator<<(ostream& out,  ArvoreAVL<T>& avl)
         {

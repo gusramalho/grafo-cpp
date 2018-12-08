@@ -22,6 +22,7 @@ class Grafo
             for (int i=0; i<grafo.indiceAtual; i++)
             {
                 out << grafo.vertices[i];
+                out << "(" << grafo.indices[i] << ")";
                 if (i != grafo.indiceAtual - 1)
                     out << ", ";
             }
@@ -36,16 +37,16 @@ class Grafo
                     int aresta = grafo.arestas->get(i,j);
                     if (aresta != -1)
                     {
-                        out << grafo.vertices[i];
+                        out << grafo.getVertice(i);
                         out << " ----> ";
-                        out << grafo.vertices[j];
+                        out << grafo.getVertice(j);
                         out << " peso: ";
                         out << aresta << endl;
                     }
                 }
             out << endl;
 
-            out << endl;
+            out << "Matriz de adjacencia:" << endl;
 
             out << *grafo.arestas << endl;
             return out;
@@ -61,8 +62,9 @@ class Grafo
 
         int indiceAtual;
         int indiceDe(T vertice);
+        T getVertice(int i);
         int temAresta(T vertice);
-        void removerVerticeDasArestas(int);
+        void removeArestasDoVertice(int i);
 
 
 };

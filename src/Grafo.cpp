@@ -6,9 +6,9 @@
 template <class T>
 Grafo<T>::Grafo(int dir)
 {
-    this->vertices = new T[25];
-    this->indices = new int[25];
-    this->arestas = new MatrizEsparsa<int>(-1, 25, 25);
+    this->vertices = new T[10];
+    this->indices = new int[10];
+    this->arestas = new MatrizEsparsa<int>(-1, 10, 10);
     this->indiceAtual = 0;
     this->ehDirecionado = dir;
 }
@@ -20,6 +20,7 @@ void Grafo<T>::addVertice(T vertice)
         if (vertices[i] == vertice)
             throw std::invalid_argument("Vertice ja existente");
 
+    this->indices[indiceAtual] = indiceAtual;
     this->vertices[indiceAtual++] = vertice;
 }
 
@@ -32,25 +33,42 @@ int Grafo<T>::indiceDe(T vertice)
         if (this->vertices[i] == vertice)
             break;
         if (i == indiceAtual)
-            throw std::invalid_argument("Vertice v1 não existente");
+            throw std::invalid_argument("Vertice nao existente");
     }
-    return i;
+    return indices[i];
+}
+
+template <class T>
+T Grafo<T>::getVertice(int i)
+{
+    int j;
+    for (j = 0; j < indiceAtual; j++)
+    {
+        if (this->indices[j] == i)
+            break;
+        if (j == indiceAtual)
+            throw std::invalid_argument("Vertice nao existente");
+    }
+    return vertices[j];
 }
 
 template <class T>
 void Grafo<T>::removeVertice(T vertice)
 {
-    if (this->temAresta(vertice))
-        throw std::invalid_argument("Vertice possui arestas");
-
     int iVertc = this->indiceDe(vertice);
 
     for (int i = iVertc; i<this->indiceAtual; i++)
+    {
         this->vertices[i] = vertices[i+1];
-
-    removerVerticeDasArestas(iVertc);
+        this->indices[i] = indices[i+1];
+    }
 
     vertices[--indiceAtual] = NULL;
+    indices[indiceAtual] = NULL;
+
+    removeArestasDoVertice(iVertc);
+
+
 }
 
 template <class T>
@@ -68,7 +86,6 @@ void Grafo<T>::addAresta(T vOrigem, T vDestino, int peso)
         this->arestas->put(peso, destino, origem);
 }
 
-
 template <class T>
 void Grafo<T>::removeAresta(T vOrigem, T vDestino)
 {
@@ -85,46 +102,16 @@ void Grafo<T>::removeAresta(T vOrigem, T vDestino)
 }
 
 template <class T>
-int Grafo<T>::temAresta(T vertice)
+void Grafo<T>::removeArestasDoVertice(int i)
 {
-   int iVertc = indiceDe(vertice);
-   for (int j=0; j < this->indiceAtual; j++)
-        if (this->arestas->get(iVertc, j) != -1)
-            return 1;
-
-   if (ehDirecionado)
-   {
-       for (int i= 0; i < this->indiceAtual; i++)
-            if (this->arestas->get(i, iVertc) != -1)
-                return 1;
-   }
-
-   return 0;
-}
-
-template <class T>
-void Grafo<T>::removerVerticeDasArestas(int indice)
-{
-    for (int i = 0; i < indice; i++)
-        for (int j = indice; j < this->indiceAtual; j++)
+    for (int j=0; j < indiceAtual; j++)
+    {
+        if (j != i)
         {
-            int val = arestas->get(i, j+1);
-            this->arestas->put(val, i, j);
+            arestas->put(-1, i, j);
+            arestas->put(-1, j, i);
         }
-
-    for (int i = indice; i < this->indiceAtual; i++)
-        for (int j = 0; j < indice; j++)
-        {
-            int val = arestas->get(i+1, j);
-            this->arestas->put(val, i, j);
-        }
-
-    for (int i = indice; i < this->indiceAtual; i++)
-        for (int j = indice; j < this->indiceAtual; j++)
-        {
-            int val = arestas->get(i+1, j+1);
-            this->arestas->put(val, i, j);
-        }
+    }
 }
 
 #endif // GRAFO_CPP

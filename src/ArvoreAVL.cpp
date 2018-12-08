@@ -254,11 +254,6 @@ void ArvoreAVL<T>::calcEquilibrio(No<T>* ptr)
         calcEquilibrio(ptr->getDir());
 }
 
-template <class T>
-void ArvoreAVL<T>::test()
-{
-    calcEquilibrio(this->raiz);
-}
 
 template <class T>
 void ArvoreAVL<T>::balancear()
